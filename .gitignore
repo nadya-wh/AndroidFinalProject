@@ -46,3 +46,6 @@ build/
 
 #NDK
 obj/
+
+#sqlite
+*.sqlite3
