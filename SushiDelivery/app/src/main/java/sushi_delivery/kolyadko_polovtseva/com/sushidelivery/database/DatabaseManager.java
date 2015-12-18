@@ -1,9 +1,8 @@
-package sushi_delivery.kolyadko_polovtseva.com.sushidelivery;
+package sushi_delivery.kolyadko_polovtseva.com.sushidelivery.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.*;
 import android.database.sqlite.SQLiteOpenHelper;
 

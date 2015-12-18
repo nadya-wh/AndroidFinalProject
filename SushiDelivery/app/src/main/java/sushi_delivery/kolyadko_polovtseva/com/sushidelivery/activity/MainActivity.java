@@ -1,15 +1,15 @@
-package sushi_delivery.kolyadko_polovtseva.com.sushidelivery;
+package sushi_delivery.kolyadko_polovtseva.com.sushidelivery.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,12 +21,21 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TextView loginView = (TextView) findViewById(R.id.loginTextView);
+        TextView registerView = (TextView) findViewById(R.id.signInTextView);
 
         loginView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent loginActivity = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(loginActivity);
+            }
+        });
+
+        registerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent registerActivity = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(registerActivity);
             }
         });
 

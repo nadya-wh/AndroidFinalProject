@@ -1,4 +1,4 @@
-package sushi_delivery.kolyadko_polovtseva.com.sushidelivery;
+package sushi_delivery.kolyadko_polovtseva.com.sushidelivery.database;
 
 /**
  * Created by User on 18.12.2015.

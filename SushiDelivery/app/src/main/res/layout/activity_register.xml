@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="sushi_delivery.kolyadko_polovtseva.com.sushidelivery.activity.LoginActivity">
+    tools:context="sushi_delivery.kolyadko_polovtseva.com.sushidelivery.activity.RegisterActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -49,6 +49,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <AutoCompleteTextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_name"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <EditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
@@ -69,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_login"
+                android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 
         </LinearLayout>
