@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
+            app:title="@string/new_order"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -63,6 +64,7 @@
             android:id="@+id/salad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/salad"
             app:fab_addButtonColorNormal="@color/colorAccent"
             app:fab_addButtonColorPressed="@color/colorPrimaryDark"
             app:fab_title="@string/prompt_salad" />
@@ -71,6 +73,7 @@
             android:id="@+id/soups"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/soup"
             app:fab_addButtonColorNormal="@color/colorAccent"
             app:fab_addButtonColorPressed="@color/colorPrimaryDark"
             app:fab_title="@string/prompt_soup" />
@@ -79,6 +82,7 @@
             android:id="@+id/sushi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/sushi"
             app:fab_addButtonColorNormal="@color/colorAccent"
             app:fab_addButtonColorPressed="@color/colorPrimaryDark"
             app:fab_size="normal"
