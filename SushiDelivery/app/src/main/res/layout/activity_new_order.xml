@@ -53,7 +53,11 @@
             android:layout_height="wrap_content"
             app:fab_addButtonColorNormal="@color/colorAccent"
             app:fab_addButtonColorPressed="@color/colorPrimaryDark"
-            app:fab_title="@string/prompt_drinks"></com.getbase.floatingactionbutton.FloatingActionButton>
+            app:fab_title="@string/prompt_drinks"
+            android:src="@drawable/drink"
+            />
+
+
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/salad"
