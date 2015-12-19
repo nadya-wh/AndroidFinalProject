@@ -18,6 +18,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements IUserDAO {
     private static final String DB_NAME = "sushi_delivery";
     private static final String USER_TABLE_NAME = "user";
     private final Context context;
+    private SQLiteDatabase database;
 
 
     public UserDAOImpl(Context context) {
@@ -53,25 +54,6 @@ public class UserDAOImpl extends SQLiteOpenHelper implements IUserDAO {
             return false;
         } else {
             return true;
-        }
-    }
-
-    @Override
-    public User getUser(String login, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from " + USER_TABLE_NAME +
-                        " where " + DatabaseValues.LOGIN.getValue() + "= '" + login +
-                        "' and " + DatabaseValues.PASSWORD.getValue() + " = '" + password + "';",
-                null);
-        if (res.getCount() == 1) {
-            res.moveToFirst();
-            String name = res.getString(res.getColumnIndex(DatabaseValues.NAME.getValue()));
-            String email = res.getString(res.getColumnIndex(DatabaseValues.LOGIN.getValue()));
-            String address = res.getString(res.getColumnIndex(DatabaseValues.ADDRESS.getValue()));
-            String phoneNumber = res.getString(res.getColumnIndex(DatabaseValues.PHONE_NUMBER.getValue()));
-            return new User(email, name, address, phoneNumber);
-        } else {
-            return null;
         }
     }
 

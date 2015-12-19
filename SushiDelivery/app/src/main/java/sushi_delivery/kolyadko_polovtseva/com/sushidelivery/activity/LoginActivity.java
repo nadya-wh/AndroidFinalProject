@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -36,8 +37,6 @@ import java.util.List;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.dao.IUserDAO;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.dao.impl.UserDAOImpl;
-import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.User;
-import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -74,6 +73,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         databaseManager = new UserDAOImpl(getApplicationContext());
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -196,10 +196,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //            showProgress(true);
 //            mAuthTask = new UserLoginTask(email, password);
 //            mAuthTask.execute((Void) null);
-            User user = databaseManager.getUser(email, password);
-            if (user != null) {
-
-                Intent intent = new Intent(LoginActivity.this, NewOrderActivity.class);
+            if (databaseManager.checkUserExist(email, password)) {
+                Intent intent = new Intent(LoginActivity.this, ScrollingActivity.class);
                 startActivity(intent);
             } else {
                 mEmailView.setError(getString(R.string.error_login));
@@ -306,6 +304,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**

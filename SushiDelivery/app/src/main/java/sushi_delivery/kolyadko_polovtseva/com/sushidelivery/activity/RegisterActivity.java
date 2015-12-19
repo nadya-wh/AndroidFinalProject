@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -29,7 +30,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -73,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         databaseManager = new UserDAOImpl(getApplicationContext());
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -189,17 +190,6 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             cancel = true;
         }
 
-        if (TextUtils.isEmpty(address)) {
-            mAddressView.setError(getString(R.string.error_field_required));
-            focusView = mAddressView;
-            cancel = true;
-        }
-        if (TextUtils.isEmpty(phoneNumber)) {
-            mPhoneNumberView.setError(getString(R.string.error_field_required));
-            focusView = mPhoneNumberView;
-            cancel = true;
-        }
-
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -212,7 +202,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             if (!databaseManager.addUser(user)) {
                 mEmailView.setError(getString(R.string.error_register));
             } else {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, ScrollingActivity.class);
                 startActivity(intent);
             }
         }
@@ -316,6 +306,17 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**

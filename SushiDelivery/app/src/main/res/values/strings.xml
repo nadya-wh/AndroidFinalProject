@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">SushiDelivery</string>
+    <string name="app_name">Sushi King Delivery</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Log in</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="title_activity_call">Call</string>
+    <string name="font_path">fonts/612kb__.ttf"</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -9,9 +12,9 @@
     <string name="prompt_name">Name</string>
     <string name="prompt_address">Address</string>
     <string name="prompt_phone_number">Phone number</string>
-    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in">Sign up</string>
     <string name="action_login">Login</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_in_short">Sign up</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -113,6 +116,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_register">Sign in</string>
+<<<<<<< HEAD
     <string name="title_activity_new_order">NewOrderActivity</string>
     <string name="title_activity_order">OrderActivity</string>
     <string name="prompt_drinks">Drinks</string>
@@ -120,4 +124,6 @@
     <string name="prompt_soup">Soups</string>
     <string name="prompt_sushi">Sushi</string>
     <string name="no_items">No items</string>
+=======
+>>>>>>> 8e498baf540aed9de77cd9368a9be3af9bd5e116
 </resources>

@@ -13,9 +13,22 @@
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-    <style name="menu_labels_style">
-        <item name="android:background">@drawable/fab_label_background</item>
-        <item name="android:textColor">@color/white</item>
+
+    <style name="ButtonDefault" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/button_event_selector</item>
+        <item name="android:textColor">@drawable/text_event_colors</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginTop">@dimen/button_margin_top</item>
     </style>
 
+    <style name="MenuTextView" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@drawable/text_event_colors</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginTop">@dimen/text_view_margin</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">30dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 </resources>
