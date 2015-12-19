@@ -7,6 +7,8 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_name">Name</string>
+    <string name="prompt_address">Address</string>
+    <string name="prompt_phone_number">Phone number</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_login">Login</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -111,4 +113,10 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_register">Sign in</string>
+    <string name="title_activity_new_order">NewOrderActivity</string>
+    <string name="title_activity_order">OrderActivity</string>
+    <string name="prompt_drinks">Drinks</string>
+    <string name="prompt_salad">Salad</string>
+    <string name="prompt_soup">Soups</string>
+    <string name="prompt_sushi">Sushi</string>
 </resources>

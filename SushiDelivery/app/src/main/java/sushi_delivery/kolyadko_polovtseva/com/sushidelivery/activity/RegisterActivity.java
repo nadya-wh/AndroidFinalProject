@@ -29,6 +29,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -36,7 +37,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
-import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.database.DatabaseManager;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.dao.IUserDAO;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.dao.impl.UserDAOImpl;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.User;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -49,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
-    private DatabaseManager databaseManager;
+    private IUserDAO databaseManager;
 
 
     /**
@@ -63,15 +66,19 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     private View mProgressView;
     private View mLoginFormView;
     private AutoCompleteTextView mNameView;
+    private AutoCompleteTextView mAddressView;
+    private AutoCompleteTextView mPhoneNumberView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        databaseManager = new DatabaseManager(getApplicationContext());
+        databaseManager = new UserDAOImpl(getApplicationContext());
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mNameView = (AutoCompleteTextView) findViewById(R.id.name);
+        mAddressView = (AutoCompleteTextView) findViewById(R.id.address);
+        mPhoneNumberView = (AutoCompleteTextView) findViewById(R.id.phone_number);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -152,6 +159,8 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
         String name = mNameView.getText().toString();
+        String address = mAddressView.getText().toString();
+        String phoneNumber = mPhoneNumberView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -180,6 +189,17 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             cancel = true;
         }
 
+        if (TextUtils.isEmpty(address)) {
+            mAddressView.setError(getString(R.string.error_field_required));
+            focusView = mAddressView;
+            cancel = true;
+        }
+        if (TextUtils.isEmpty(phoneNumber)) {
+            mPhoneNumberView.setError(getString(R.string.error_field_required));
+            focusView = mPhoneNumberView;
+            cancel = true;
+        }
+
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -188,10 +208,11 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
 //            showProgress(true);
-            if (!databaseManager.insertUser(name, email, password)) {
+            User user = new User(email, name,  password, address, phoneNumber);
+            if (!databaseManager.addUser(user)) {
                 mEmailView.setError(getString(R.string.error_register));
             } else {
-                Intent intent = new Intent(RegisterActivity.this, ScrollingActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         }

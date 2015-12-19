@@ -34,7 +34,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
-import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.database.DatabaseManager;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.dao.IUserDAO;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.dao.impl.UserDAOImpl;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.User;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -47,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
-    private DatabaseManager databaseManager;
+    private IUserDAO databaseManager;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -71,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        databaseManager = new DatabaseManager(getApplicationContext());
+        databaseManager = new UserDAOImpl(getApplicationContext());
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -193,8 +196,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //            showProgress(true);
 //            mAuthTask = new UserLoginTask(email, password);
 //            mAuthTask.execute((Void) null);
-            if (databaseManager.checkUserExist(email, password)) {
-                Intent intent = new Intent(LoginActivity.this, ScrollingActivity.class);
+            User user = databaseManager.getUser(email, password);
+            if (user != null) {
+
+                Intent intent = new Intent(LoginActivity.this, NewOrderActivity.class);
                 startActivity(intent);
             } else {
                 mEmailView.setError(getString(R.string.error_login));
