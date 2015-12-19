@@ -8,7 +8,6 @@ import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.User;
 public interface IUserDAO {
     boolean checkUserExist(String login, String password);
     boolean addUser (User user);
-    User getUser(String login, String password);
 
 
 }

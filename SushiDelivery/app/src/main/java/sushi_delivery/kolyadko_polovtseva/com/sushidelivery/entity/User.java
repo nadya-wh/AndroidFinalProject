@@ -10,13 +10,6 @@ public class User {
     private String address;
     private String phoneNumber;
 
-    public User(String login, String name, String address, String phoneNumber) {
-        this.login = login;
-        this.name = name;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-    }
-
     public User(String login, String name, String password, String address, String phoneNumber) {
         this.login = login;
         this.name = name;
