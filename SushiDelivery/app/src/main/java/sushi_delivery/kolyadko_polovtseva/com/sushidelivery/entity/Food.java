@@ -7,11 +7,19 @@ public class Food {
     private FoodType type;
     private String foodName;
     private Double price;
+    private String imageUrl;
 
     public Food(FoodType type, String foodName, Double price) {
         this.type = type;
         this.foodName = foodName;
         this.price = price;
+    }
+
+    public Food(FoodType type, String foodName, Double price, String imageUrl) {
+        this.type = type;
+        this.foodName = foodName;
+        this.price = price;
+        this.imageUrl = imageUrl;
     }
 
     public FoodType getType() {
@@ -24,5 +32,9 @@ public class Food {
 
     public Double getPrice() {
         return price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 }

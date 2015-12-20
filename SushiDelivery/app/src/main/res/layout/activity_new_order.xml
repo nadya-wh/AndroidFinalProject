@@ -46,13 +46,13 @@
         android:layout_margin="16dp"
         app:fab_addButtonColorNormal="@color/colorAccent"
         app:fab_addButtonColorPressed="@color/colorPrimaryDark"
+
         app:fab_labelStyle="@style/menu_labels_style">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/drinks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_addButtonColorNormal="@color/colorAccent"
             app:fab_addButtonColorPressed="@color/colorPrimaryDark"
             app:fab_title="@string/prompt_drinks"
             android:src="@drawable/drink"
