@@ -1,0 +1,14 @@
+{
+  "salads": [
+    {
+      "name": "Greek",
+      "price": "50000",
+      "imgUrl": "http://casagrecque.ca/uploads/products/images/Greek-Salad-1.png"
+    },
+    {
+      "name": "Caesar",
+      "price": "50000",
+      "imgUrl": "http://ihopbonita.com/wp-content/uploads/2014/05/Grilled_Chicken_Caesar_Salad.png"
+    }
+  ]
+}

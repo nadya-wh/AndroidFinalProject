@@ -15,7 +15,7 @@
         style="@style/MenuTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/signInTextView"
+        android:id="@+id/registerTextView"
         android:clickable="true"/>
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/loginTextView"
-        android:layout_below="@+id/signInTextView"
+        android:layout_below="@+id/registerTextView"
         android:clickable="true"/>
 
     <TextView

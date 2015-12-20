@@ -1,12 +1,12 @@
 package sushi_delivery.kolyadko_polovtseva.com.sushidelivery.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
-
 
 import java.util.ArrayList;
 
@@ -18,24 +18,26 @@ import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.RowModel;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.init.FoodInitializer;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.util.CustomFoodItemAdapter;
 
-public class DrinksActivity extends AppCompatActivity {
+public class SaladsActivity extends AppCompatActivity {
 
     private ArrayList<RowModel> rows;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drinks);
+        setContentView(R.layout.activity_salads);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        ArrayList<Food> drinks;
-        FoodInitializer foodInitializer = new FoodInitializer(FoodType.DRINK,
-                getResources().openRawResource(R.raw.drinks));
+        ArrayList<Food> salads;
+        FoodInitializer foodInitializer = new FoodInitializer(FoodType.SALAD,
+                getResources().openRawResource(R.raw.salads));
 
         if (foodInitializer.init()) {
-            drinks = foodInitializer.initFoodItems();
-            rows = RowModelBuilder.buildRowModel(drinks);
+            salads = foodInitializer.initFoodItems();
+            rows = RowModelBuilder.buildRowModel(salads);
             CustomFoodItemAdapter adapter = new CustomFoodItemAdapter(this, rows);
             listView.setAdapter(adapter);
         }
@@ -43,14 +45,10 @@ public class DrinksActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DrinksActivity.this, NewOrderActivity.class));
+            public void onClick(View view) {
+                startActivity(new Intent(SaladsActivity.this, NewOrderActivity.class));
             }
         });
     }
 
-    @Override
-    protected void onUserLeaveHint() {
-        super.onUserLeaveHint();
-    }
 }

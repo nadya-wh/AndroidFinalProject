@@ -4,18 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="TextView"
         android:textSize="@dimen/address_size"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:maxLines="2"/>
 
     <ImageView

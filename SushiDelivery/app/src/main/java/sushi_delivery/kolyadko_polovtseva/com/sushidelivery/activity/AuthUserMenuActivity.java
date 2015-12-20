@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery;

@@ -8,22 +8,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="sushi_delivery.kolyadko_polovtseva.com.sushidelivery.activity.DrinksActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="sushi_delivery.kolyadko_polovtseva.com.sushidelivery.activity.SaladsActivity"
+    tools:showIn="@layout/activity_salads">
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin" />
-
 
 </RelativeLayout>

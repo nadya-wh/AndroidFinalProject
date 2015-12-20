@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setFont(menu, font);
 
         TextView loginView = (TextView) findViewById(R.id.loginTextView);
-        TextView registerView = (TextView) findViewById(R.id.signInTextView);
+        TextView registerView = (TextView) findViewById(R.id.registerTextView);
         TextView callView = (TextView) findViewById(R.id.callTextView);
 
         loginView.setOnClickListener(new View.OnClickListener() {
