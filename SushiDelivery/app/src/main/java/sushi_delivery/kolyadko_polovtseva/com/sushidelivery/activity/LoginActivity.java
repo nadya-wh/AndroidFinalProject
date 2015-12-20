@@ -38,6 +38,7 @@ import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.dao.IUserDAO;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.dao.impl.UserDAOImpl;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.User;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -199,9 +200,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //            mAuthTask.execute((Void) null);
             User user = databaseManager.getUser(email, password);
             if (user != null) {
-
-                Intent intent = new Intent(LoginActivity.this, NewOrderActivity.class);
+                ServerMockery.setCurrentUser(user);
+                Intent intent = new Intent(LoginActivity.this, AuthUserMenuActivity.class);
+                intent.putExtra("username", user.getName());
+                intent.putExtra("address", user.getAddress());
+                intent.putExtra("phone", user.getPhoneNumber());
                 startActivity(intent);
+                finish();
             } else {
                 mEmailView.setError(getString(R.string.error_login));
                 mPasswordView.setError(getString(R.string.error_login));

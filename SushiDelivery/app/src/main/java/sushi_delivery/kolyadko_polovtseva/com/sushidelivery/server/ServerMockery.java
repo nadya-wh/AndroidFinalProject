@@ -9,6 +9,7 @@ import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.User;
 public class ServerMockery {
     private static User currentUser = null;
     private static Order currentOrder = null;
+    private static String sushiKingPhoneNumber = "+375296667641";
 
     public static void setCurrentUser(User currentUser) {
         ServerMockery.currentUser = currentUser;
@@ -24,5 +25,18 @@ public class ServerMockery {
 
     public static Order getCurrentOrder() {
         return currentOrder;
+    }
+
+    public static String getSushiKingPhoneNumber() {
+        return sushiKingPhoneNumber;
+    }
+
+    public static void setSushiKingPhoneNumber(String sushiKingPhoneNumber) {
+        ServerMockery.sushiKingPhoneNumber = sushiKingPhoneNumber;
+    }
+
+    public static void logOut(){
+        setCurrentOrder(null);
+        setCurrentOrder(null);
     }
 }

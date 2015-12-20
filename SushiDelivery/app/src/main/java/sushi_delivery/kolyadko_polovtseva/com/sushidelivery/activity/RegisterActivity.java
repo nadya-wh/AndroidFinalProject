@@ -40,6 +40,7 @@ import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.dao.IUserDAO;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.dao.impl.UserDAOImpl;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.User;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -202,8 +203,13 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             if (!databaseManager.addUser(user)) {
                 mEmailView.setError(getString(R.string.error_register));
             } else {
-                Intent intent = new Intent(RegisterActivity.this, ScrollingActivity.class);
+                ServerMockery.setCurrentUser(user);
+                Intent intent = new Intent(RegisterActivity.this, AuthUserMenuActivity.class);
+                intent.putExtra("username", user.getName());
+                intent.putExtra("address", user.getAddress());
+                intent.putExtra("phone", user.getPhoneNumber());
                 startActivity(intent);
+                finish();
             }
         }
     }

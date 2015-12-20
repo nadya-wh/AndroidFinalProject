@@ -2,6 +2,7 @@ package sushi_delivery.kolyadko_polovtseva.com.sushidelivery.activity;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,10 +13,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery;
 
 public class MainActivity extends AppCompatActivity {
     private ViewGroup menu;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView loginView = (TextView) findViewById(R.id.loginTextView);
         TextView registerView = (TextView) findViewById(R.id.signInTextView);
+        TextView callView = (TextView) findViewById(R.id.callTextView);
 
         loginView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +48,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        callView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ServerMockery.getSushiKingPhoneNumber()));
+                callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                try {
+                    startActivity(callIntent);
+                } catch (SecurityException exc) {
+                    exc.printStackTrace();
+                }
+            }
+        });
     }
 
     // Sets the font on all TextViews in the ViewGroup.
