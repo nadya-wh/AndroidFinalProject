@@ -47,6 +47,7 @@ public class NewOrderActivity extends AppCompatActivity {
         FloatingActionButton salads = (FloatingActionButton) findViewById(R.id.salad);
         FloatingActionButton soups = (FloatingActionButton) findViewById(R.id.soups);
         FloatingActionButton sushi = (FloatingActionButton) findViewById(R.id.sushi);
+        FloatingActionButton approve = (FloatingActionButton) findViewById(R.id.approve);
 
         drinks.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +60,27 @@ public class NewOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(NewOrderActivity.this, SaladsActivity.class));
+            }
+        });
+
+        soups.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NewOrderActivity.this, SoupsActivity.class));
+            }
+        });
+
+        sushi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NewOrderActivity.this, SushiActivity.class));
+            }
+        });
+
+        approve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NewOrderActivity.this, ApproveOrderActivity.class));
             }
         });
 

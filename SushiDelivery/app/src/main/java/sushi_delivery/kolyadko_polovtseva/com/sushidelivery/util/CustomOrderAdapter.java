@@ -1,7 +1,9 @@
 package sushi_delivery.kolyadko_polovtseva.com.sushidelivery.util;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +12,16 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.action.ImageDownloadTask;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.Food;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.RowModel;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery;
 
 /**
  * Created by User on 20.12.2015.
@@ -48,6 +53,35 @@ public class CustomOrderAdapter extends ArrayAdapter {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+        name.setOnLongClickListener(new View.OnLongClickListener() { //TODO:dosen't work
+            @Override
+            public boolean onLongClick(View v) {
+                final CharSequence[] items = {context.getText(R.string.yes), context.getText(R.string.no)};
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle(R.string.message);
+                builder.setItems(items, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int item) {
+                        switch (item) {
+                            case 0: {
+                                ServerMockery.getCurrentOrder().removeFoodItem(new Food(modelItems.get(position).getType(),
+                                        modelItems.get(position).getName(), modelItems.get(position).getPrice(),
+                                        modelItems.get(position).getImageUrl()));
+                                modelItems.remove(position);
+                                break;
+                            }
+                            case 1:
+                                break;
+                        }
+
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+                return true;
+            }
+        });
+
         return convertView;
     }
 

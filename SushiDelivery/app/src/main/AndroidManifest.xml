@@ -49,6 +49,21 @@
         </activity>
         <activity android:name=".activity.NewOrderActivity" >
         </activity>
+        <activity
+            android:name=".activity.SoupsActivity"
+            android:label="@string/title_activity_soups"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".activity.SushiActivity"
+            android:label="@string/title_activity_sushi"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".activity.ApproveOrderActivity"
+            android:label="@string/title_activity_approve_order"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

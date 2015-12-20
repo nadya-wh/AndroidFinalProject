@@ -68,4 +68,17 @@
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/approve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/check"
+        app:fab_addButtonColorNormal="@color/colorAccent"
+        app:fab_addButtonColorPressed="@color/colorPrimaryDark"
+        app:fab_size="normal"
+        app:fab_title="@string/prompt_sushi"
+        android:layout_alignBottom="@+id/multiple_actions"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

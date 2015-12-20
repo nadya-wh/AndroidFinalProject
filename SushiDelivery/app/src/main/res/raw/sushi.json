@@ -1,0 +1,14 @@
+{
+  "sushi": [
+    {
+      "name": "Tokyo",
+      "price": "100000",
+      "imgUrl": "http://iluvtokyosushi.net/images/home_l.png"
+    },
+    {
+      "name": "Set #8",
+      "price": "120000",
+      "imgUrl": "http://pngimg.com/upload/sushi_PNG9252.png"
+    }
+  ]
+}
