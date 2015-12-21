@@ -13,6 +13,7 @@ import java.net.HttpURLConnection;
  */
 public class ImageDownloadTask extends AsyncTask<String, Void, Bitmap> {
 
+
     @Override
     protected Bitmap doInBackground(String... params) {
         try {
@@ -28,5 +29,10 @@ public class ImageDownloadTask extends AsyncTask<String, Void, Bitmap> {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    protected void onPostExecute(Bitmap bitmap) {
+        super.onPostExecute(bitmap);
     }
 }

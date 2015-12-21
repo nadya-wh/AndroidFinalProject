@@ -2,6 +2,10 @@ package sushi_delivery.kolyadko_polovtseva.com.sushidelivery.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +14,18 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.concurrent.ExecutionException;
 
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.action.ImageDownloadTask;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.DownloadPictureTaskBean;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.Food;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.RowModel;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery;
@@ -25,11 +36,13 @@ import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery
 public class CustomFoodItemAdapter extends ArrayAdapter {
     private ArrayList<RowModel> modelItems = null;
     private Context context;
+    private HashMap<Integer, ImageView> imageViews;
 
     public CustomFoodItemAdapter(Context context, ArrayList<RowModel> resource) {
         super(context, R.layout.row, resource);
         this.context = context;
         this.modelItems = resource;
+        imageViews = new HashMap<>(resource.size());
     }
 
     @Override
@@ -39,16 +52,12 @@ public class CustomFoodItemAdapter extends ArrayAdapter {
         TextView name = (TextView) convertView.findViewById(R.id.textView);
         final CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.checkBox);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
+        imageViews.put(position, imageView);
 
         name.setText(modelItems.get(position).getName() + "\n" + modelItems.get(position).getPrice());
-        try {
 
-            imageView.setImageBitmap(new ImageDownloadTask().execute(modelItems.get(position).getImageUrl()).get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        DownloadPictureTask downloadPictureTask = new DownloadPictureTask();
+        downloadPictureTask.execute(new DownloadPictureTaskBean(position, modelItems.get(position).getImageUrl()));
 
         if (modelItems.get(position).isValue())
             checkBox.setChecked(true);
@@ -76,5 +85,34 @@ public class CustomFoodItemAdapter extends ArrayAdapter {
         });
 
         return convertView;
+    }
+
+    class DownloadPictureTask extends AsyncTask<DownloadPictureTaskBean, Void, Bitmap> {
+        private Integer id;
+
+        @Override
+        protected Bitmap doInBackground(DownloadPictureTaskBean... params) {
+            try {
+                this.id = params[0].getImageViewId();
+                java.net.URL url = new java.net.URL(params[0].getImageUrl());
+                HttpURLConnection connection = (HttpURLConnection) url
+                        .openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                return myBitmap;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            ImageView imageView = imageViews.get(id);
+            imageView.setImageBitmap(bitmap);
+        }
     }
 }

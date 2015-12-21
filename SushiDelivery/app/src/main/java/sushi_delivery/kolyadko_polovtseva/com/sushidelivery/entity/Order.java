@@ -38,9 +38,9 @@ public class Order {
         return Collections.unmodifiableList(food);
     }
 
-    public Double getTotalSum(){
+    public Double countTotalSum() {
         Double total = 0.0;
-        for(Food f: food){
+        for (Food f : food) {
             total += f.getPrice();
         }
         return total;

@@ -1,9 +1,9 @@
 package sushi_delivery.kolyadko_polovtseva.com.sushidelivery.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.getbase.floatingactionbutton.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
@@ -56,9 +57,11 @@ public class NewOrderActivity extends AppCompatActivity {
         FloatingActionButton sushi = (FloatingActionButton) findViewById(R.id.sushi);
         FloatingActionButton approve = (FloatingActionButton) findViewById(R.id.approve);
 
-    //    drinks.setColorNormal(getColor(R.color.colorAccent));
+        //drinks.setColorNormal(getColor(R.color.colorAccent));
      //   drinks.setColorPressed(getColor(R.color.colorPrimaryDark));
 //        approve.setColorNormal(R.color.colorPrimary);
+       // drinks.setColorNormal(android.R.color.holo_orange_light);
+
 
         drinks.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +95,7 @@ public class NewOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent approveIntent = new Intent(NewOrderActivity.this, ApproveOrderActivity.class);
-                approveIntent.putExtra("totalSum", ServerMockery.getCurrentOrder().getTotalSum().toString());
+                approveIntent.putExtra("totalSum", ServerMockery.getCurrentOrder().countTotalSum().toString());
                 startActivity(approveIntent);
             }
         });
