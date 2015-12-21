@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.User;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery;

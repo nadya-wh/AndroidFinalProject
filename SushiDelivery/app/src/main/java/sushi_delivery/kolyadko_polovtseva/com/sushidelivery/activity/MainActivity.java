@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         TextView loginView = (TextView) findViewById(R.id.loginTextView);
         TextView registerView = (TextView) findViewById(R.id.registerTextView);
         TextView callView = (TextView) findViewById(R.id.callTextView);
+        TextView menuView = (TextView) findViewById(R.id.showMenuTextView);
 
         loginView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
                 } catch (SecurityException exc) {
                     exc.printStackTrace();
                 }
+            }
+        });
+
+        menuView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FoodMenuActivity.class));
             }
         });
     }

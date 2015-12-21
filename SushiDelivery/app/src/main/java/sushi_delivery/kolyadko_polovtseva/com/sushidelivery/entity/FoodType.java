@@ -25,4 +25,18 @@ public enum FoodType {
     public String getMultipleFormValue() {
         return multipleFormValue;
     }
+
+    public static FoodType fromInteger(int i) {
+        switch (i) {
+            case 0:
+                return DRINK;
+            case 1:
+                return SOUP;
+            case 2:
+                return SALAD;
+            case 3:
+                return SUSHI;
+        }
+        return DRINK;
+    }
 }
