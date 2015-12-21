@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery;
 
@@ -30,7 +32,7 @@ public class ApproveOrderActivity extends AppCompatActivity {
         totalSumTextView.setTypeface(font);
         totalSumLabelTextView.setTypeface(font);
         Intent intent = getIntent();
-        totalSumTextView.setText(intent.getStringExtra("totalSum"));
+        totalSumTextView.setText(customFormat("###,###.#", Double.parseDouble(intent.getStringExtra("totalSum"))));
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +41,8 @@ public class ApproveOrderActivity extends AppCompatActivity {
                 startActivity(new Intent(ApproveOrderActivity.this, AuthUserMenuActivity.class));
             }
         });
-      //  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        //  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -47,5 +50,11 @@ public class ApproveOrderActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+    }
+
+    private String customFormat(String pattern, double value) {
+        DecimalFormat myFormatter = new DecimalFormat(pattern);
+        String output = myFormatter.format(value);
+        return value + "  " + pattern + "  " + output;
     }
 }

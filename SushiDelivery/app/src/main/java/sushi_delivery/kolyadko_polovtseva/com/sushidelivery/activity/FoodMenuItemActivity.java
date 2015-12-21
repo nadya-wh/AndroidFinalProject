@@ -2,6 +2,7 @@ package sushi_delivery.kolyadko_polovtseva.com.sushidelivery.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class FoodMenuItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_menu_item);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle extras = getIntent().getExtras();
         FoodType type = FoodType.fromInteger(extras.getInt("food_type"));
         ListView listView = (ListView) findViewById(R.id.listView);
@@ -56,6 +57,17 @@ public class FoodMenuItemActivity extends AppCompatActivity {
             rows = RowModelBuilder.buildRowModel(food);
             CustomOrderAdapter adapter = new CustomOrderAdapter(this, rows);
             listView.setAdapter(adapter);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
