@@ -201,12 +201,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             User user = databaseManager.getUser(email, password);
             if (user != null) {
                 ServerMockery.setCurrentUser(user);
-                Intent intent = new Intent(LoginActivity.this, AuthUserMenuActivity.class);
-                intent.putExtra("username", user.getName());
-                intent.putExtra("address", user.getAddress());
-                intent.putExtra("phone", user.getPhoneNumber());
-                startActivity(intent);
                 finish();
+                startActivity(new Intent(LoginActivity.this, AuthUserMenuActivity.class));
             } else {
                 mEmailView.setError(getString(R.string.error_login));
                 mPasswordView.setError(getString(R.string.error_login));

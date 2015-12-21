@@ -1,5 +1,7 @@
 package sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by User on 20.12.2015.
  */
@@ -9,6 +11,7 @@ public class RowModel {
     private String imageUrl;
     private double price;
     private FoodType type;
+    private Bitmap picture;
 
 
     public RowModel(String name, boolean value, String imageUrl, double price, FoodType type) {
@@ -17,6 +20,17 @@ public class RowModel {
         this.imageUrl = imageUrl;
         this.price = price;
         this.type = type;
+    }
+
+
+    public RowModel(String name, boolean value, String imageUrl, double price, FoodType type,
+                    Bitmap picture) {
+        this.name = name;
+        this.value = value;
+        this.imageUrl = imageUrl;
+        this.price = price;
+        this.type = type;
+        this.picture = picture;
     }
 
     public FoodType getType() {
@@ -41,5 +55,13 @@ public class RowModel {
 
     public void setValue(boolean value) {
         this.value = value;
+    }
+
+    public Bitmap getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Bitmap picture) {
+        this.picture = picture;
     }
 }

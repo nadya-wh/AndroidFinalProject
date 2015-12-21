@@ -40,7 +40,8 @@
         </activity>
         <activity android:name=".activity.AuthUserMenuActivity" >
         </activity>
-        <activity android:name=".activity.DrinksActivity" >
+        <activity android:name=".activity.DrinksActivity"
+            android:label="">
         </activity>
         <activity
             android:name=".activity.SaladsActivity"

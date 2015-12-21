@@ -37,11 +37,15 @@
     <string name="prompt_sushi">Sushi</string>
     <string name="no_items">No items</string>
     <string name="new_order">New order</string>
-    <string name="title_activity_salads">SaladsActivity</string>
-    <string name="title_activity_soups">SoupsActivity</string>
-    <string name="title_activity_sushi">SushiActivity</string>
-    <string name="title_activity_approve_order">ApproveOrderActivity</string>
+    <string name="title_activity_salads">Salads</string>
+    <string name="title_activity_drinks">Drinks</string>
+    <string name="title_activity_soups">Soups</string>
+    <string name="title_activity_sushi">Sushi</string>
+    <string name="title_activity_approve_order">Approve order</string>
     <string name="message">Are you sure you want remove this item?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="total_sum">Total sum:</string>
+    <string name="thanks">Thank you for using our service!</string>
 </resources>

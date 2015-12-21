@@ -37,4 +37,12 @@ public class Order {
     public List<Food> getFood() {
         return Collections.unmodifiableList(food);
     }
+
+    public Double getTotalSum(){
+        Double total = 0.0;
+        for(Food f: food){
+            total += f.getPrice();
+        }
+        return total;
+    }
 }

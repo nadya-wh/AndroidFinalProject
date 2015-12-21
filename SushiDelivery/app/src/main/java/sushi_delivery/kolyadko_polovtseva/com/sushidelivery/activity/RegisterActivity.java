@@ -204,12 +204,8 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
                 mEmailView.setError(getString(R.string.error_register));
             } else {
                 ServerMockery.setCurrentUser(user);
-                Intent intent = new Intent(RegisterActivity.this, AuthUserMenuActivity.class);
-                intent.putExtra("username", user.getName());
-                intent.putExtra("address", user.getAddress());
-                intent.putExtra("phone", user.getPhoneNumber());
-                startActivity(intent);
                 finish();
+                startActivity(new Intent(RegisterActivity.this, AuthUserMenuActivity.class));
             }
         }
     }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.R;
+import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.entity.User;
 import sushi_delivery.kolyadko_polovtseva.com.sushidelivery.server.ServerMockery;
 
 public class AuthUserMenuActivity extends AppCompatActivity {
@@ -28,10 +29,10 @@ public class AuthUserMenuActivity extends AppCompatActivity {
         TextView historyView = (TextView) findViewById(R.id.show_history_view);
         TextView logOutView = (TextView) findViewById(R.id.log_out_text_view);
 
-        Intent intent = getIntent();
-        usernameTextView.setText(intent.getStringExtra("username"));
-        addressTextView.setText(intent.getStringExtra("address"));
-        phoneTextView.setText(intent.getStringExtra("phone"));
+        User currentUser = ServerMockery.getCurrentUser();
+        usernameTextView.setText(currentUser.getName());
+        addressTextView.setText(currentUser.getAddress());
+        phoneTextView.setText(currentUser.getPhoneNumber());
 
         newOrderView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +55,8 @@ public class AuthUserMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ServerMockery.logOut();
-                finish();
+                Intent activity = new Intent(AuthUserMenuActivity.this, MainActivity.class);
+                startActivity(activity);
             }
         });
     }
