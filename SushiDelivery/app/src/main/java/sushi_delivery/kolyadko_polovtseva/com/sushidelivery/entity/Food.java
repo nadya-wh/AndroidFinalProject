@@ -56,4 +56,30 @@ public class Food {
     public void setPicture(Bitmap picture) {
         this.picture = picture;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Food food = (Food) o;
+
+        if (type != food.type) return false;
+        if (foodName != null ? !foodName.equals(food.foodName) : food.foodName != null)
+            return false;
+        if (price != null ? !price.equals(food.price) : food.price != null) return false;
+        if (imageUrl != null ? !imageUrl.equals(food.imageUrl) : food.imageUrl != null)
+            return false;
+        return picture != null ? picture.equals(food.picture) : food.picture == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = type != null ? type.hashCode() : 0;
+        result = 31 * result + (foodName != null ? foodName.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
+        return result;
+    }
 }
